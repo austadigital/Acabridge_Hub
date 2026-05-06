@@ -16,9 +16,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from accounts.views import RegisterView, ProfileView, EmailLoginView, LogoutView    
+from accounts.views import RegisterView, ProfileView, EmailLoginView, LogoutView, UpdateProfileView  
 from rest_framework_simplejwt.views import TokenRefreshView
-from school.views import StudentDashboardView
+from school.views import StudentDashboardView, TrackListView, ApplicationStatusView
+
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -27,6 +28,10 @@ urlpatterns = [
     path('api/refresh/', TokenRefreshView.as_view()),
     path('api/profile/', ProfileView.as_view()),
     path('api/logout/', LogoutView.as_view()), 
+    path('api/tracks/', TrackListView.as_view()),
+    path('api/profile/update/', UpdateProfileView.as_view()),
+    path('api/application-status/', ApplicationStatusView.as_view()),
+
     # DASHBOARD
     path('api/dashboard/', StudentDashboardView.as_view()),
 ]

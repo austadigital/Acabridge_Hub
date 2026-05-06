@@ -10,6 +10,7 @@ from rest_framework_simplejwt.views import TokenObtainPairView
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework.permissions import IsAuthenticated
 
 
 # Register
@@ -44,3 +45,14 @@ class LogoutView(APIView):
         except Exception:
             return Response({"error": "Invalid token"}, status=400)
 # Create your views here.
+class UpdateProfileView(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def put(self, request):
+        user = request.user
+        user.track_id = request.data.get("track")
+        user.nationality = request.data.get("nationality")
+        user.bio = request.data.get("bio", "")
+        user.save()
+
+        return Response({"message": "Profile updated"})

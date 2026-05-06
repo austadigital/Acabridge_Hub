@@ -319,7 +319,93 @@ Database (SQLite/PostgreSQL)
 ✔ Frontend Ready: YES
 ✔ Production Ready: YES (after deployment)
 
+# 🧪 API Testing Guide
+
+## Base URL
+
+http://127.0.0.1:8000/api/
+
 ---
+
+## 🔐 Authentication Flow
+
+1. Login → get access + refresh token
+2. Use access token for protected routes
+3. Refresh token when expired
+4. Logout to invalidate session
+
+---
+
+## 📌 Endpoints Tested
+
+### ✅ Login
+
+POST /api/login/
+
+### ✅ Profile
+
+GET /api/profile/
+
+### ✅ Tracks (Dropdown)
+
+GET /api/tracks/
+
+### ✅ Update Profile
+
+PUT /api/profile/update/
+
+### ✅ Application Status
+
+GET /api/application-status/
+
+### ✅ Dashboard
+
+GET /api/dashboard/
+
+### ✅ Logout
+
+POST /api/logout/
+
+---
+
+## 🔐 Authorization Header
+
+All protected routes require:
+
+Authorization: Bearer <access_token>
+
+---
+
+## 🧪 Testing Tools
+
+* Thunder Client (VS Code)
+* Postman (optional)
+
+---
+
+## ⚠️ Common Errors
+
+| Error            | Cause                 |
+| ---------------- | --------------------- |
+| 401 Unauthorized | Missing/expired token |
+| 404 Not Found    | Wrong URL             |
+| Invalid Token    | Wrong refresh token   |
+
+---
+
+
+---
+
+# 🚀 How to Run the Project
+
+```bash
+git clone <https://github.com/austadigital/Acabridge_Hub.git>
+cd acabridge_student_portal
+
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
+```
 
 # 👨‍💻 MAINTAINER
 

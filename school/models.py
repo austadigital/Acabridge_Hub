@@ -25,3 +25,20 @@ class Notification(models.Model):
     student = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     message = models.TextField()
     is_read = models.BooleanField(default=False)
+
+class Track(models.Model):
+    name = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.name
+    
+class Application(models.Model):
+    STATUS_CHOICES = [
+        ("pending", "Pending"),
+        ("accepted", "Accepted"),
+        ("rejected", "Rejected"),
+    ]
+
+    student = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="pending")
+    submitted_at = models.DateTimeField(auto_now_add=True)
