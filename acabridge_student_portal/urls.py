@@ -19,9 +19,13 @@ from django.urls import path, include
 from accounts.views import RegisterView, ProfileView, EmailLoginView, LogoutView, UpdateProfileView  
 from rest_framework_simplejwt.views import TokenRefreshView
 from school.views import StudentDashboardView, TrackListView, ApplicationStatusView
+from django.http import HttpResponse
 
+def home(request):
+    return HttpResponse("AcaBridge Backend is Live 🚀")
 
 urlpatterns = [
+    path('', home),
     path('admin/', admin.site.urls),
     path('api/register/', RegisterView.as_view()),
     path('api/login/', EmailLoginView.as_view()),
