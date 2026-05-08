@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: acabridge
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn acabridge_student_portal.wsgi:application
+    runtime: python-3.11.9
