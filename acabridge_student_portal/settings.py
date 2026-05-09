@@ -101,10 +101,9 @@ WSGI_APPLICATION = 'acabridge_student_portal.wsgi.application'
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
 
-
 DATABASES = {
     'default': dj_database_url.config(
-        default=os.getenv("postgresql://acabridge_db_user:Pw4Bde6VzYIAYK4psrzOlyrGwmf4EHca@dpg-d7utijrbc2fs73f1ivk0-a.oregon-postgres.render.com/acabridge_db")
+        default=os.environ.get("DATABASE_URL")
     )
 }
 
